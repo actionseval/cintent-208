@@ -25,7 +25,9 @@ jobs:
         python-version: [3.7]
 
     steps:
-    - uses: actions/checkout@v2
+    # CINTENT >> CHANGE_VERSION
+    # - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }} with Miniconda
       uses: conda-incubator/setup-miniconda@v2.0.0
@@ -36,19 +38,21 @@ jobs:
     # CINTENT >> INSERT_CINTENT
     - uses: JavidDitty/setup-cintent@e3d420b9a40765f278d3651507e812014bfc7407
 
-    - name: Get pip cache dir
-      id: pip-cache
-      shell: bash -l {0}
-      run: |
-        echo "::set-output name=dir::$(python -m pip cache dir)"
-      
-    - name: Load pip cache
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: ${{ matrix.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/requirements*.txt') }}
-        restore-keys: |
-          ${{ matrix.os }}-${{ matrix.python-version }}-pip-
+    # CINTENT >> REMOVE_CACHE
+    # - name: Get pip cache dir
+    #   id: pip-cache
+    #   shell: bash -l {0}
+    #   run: |
+    #     echo "::set-output name=dir::$(python -m pip cache dir)"
+        
+    # CINTENT >> REMOVE_CACHE
+    # - name: Load pip cache
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: ${{ steps.pip-cache.outputs.dir }}
+    #     key: ${{ matrix.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/requirements*.txt') }}
+    #     restore-keys: |
+    #       ${{ matrix.os }}-${{ matrix.python-version }}-pip-
 
     - name: Install ffmpeg
       shell: bash -l {0}
