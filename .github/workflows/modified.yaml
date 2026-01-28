@@ -27,14 +27,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # CINTENT >> INSERT_CINTENT
-    - uses: JavidDitty/setup-cintent@a606c80c34ec190c6a20dea33d6d58ddb6c4e0cc
-
     - name: Set up Python ${{ matrix.python-version }} with Miniconda
       uses: conda-incubator/setup-miniconda@v2.0.0
       with:
         auto-update-conda: true
         python-version: ${{ matrix.python-version }}
+
+    # CINTENT >> INSERT_CINTENT
+    - uses: JavidDitty/setup-cintent@e3d420b9a40765f278d3651507e812014bfc7407
 
     - name: Get pip cache dir
       id: pip-cache
